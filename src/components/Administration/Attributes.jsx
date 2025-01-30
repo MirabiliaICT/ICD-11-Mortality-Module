@@ -65,7 +65,7 @@ const Attributes = ({
   useEffect(() => {
     if ( (selectedTrackedEntityAttributes.filter( ([,source]) => source === "Sex" ).length > 0) ) {
       metadataApi.get(`/api/trackedEntityAttributes/${selectedTrackedEntityAttributes.find( ([,source]) => source === "Sex" )[0]}.json`, {} ,[
-        "fields=optionSet[options[id,name,code]]"
+        "fields=optionSet&fields=options&fields=id,name,code"
       ]).then( json => {
         setFemaleOptions(json.optionSet.options)
       })

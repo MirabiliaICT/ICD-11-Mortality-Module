@@ -183,7 +183,7 @@ const App = ({
             code: null,
           });
           metadataApi.push("/api/dataStore/WHO_ICD11_COD/fullnameOption", {
-            fullnameOption: false,
+            fullnameOption: "firstlastname",
           });
           metadataApi.push("/api/dataStore/WHO_ICD11_COD/certificateTemplate", {
             certificate: null,
@@ -195,7 +195,7 @@ const App = ({
             formMapping: null,
           });
           metadataApi.push("/api/dataStore/WHO_ICD11_COD/fullnameOption", {
-            fullnameOption: false,
+            fullnameOption: "firstlastname",
           });
           changeRoute("administration");
           setLoading(false);
@@ -256,7 +256,7 @@ const App = ({
 
               await getICD11Options(require("../../asset/metadata/icd11_options.json"));
               metadataApi.get("/api/options.json", { paging: false }, [
-                "fields=id,name,code,attributeValues[value,attribute[id]]",
+                "fields=id,name,code,attributeValues%5Bvalue,attribute%5Bid%5D%5D",
                 "filter=optionSet.id:eq:" + res[2].id,
               ])
               .then(({ options }) => {

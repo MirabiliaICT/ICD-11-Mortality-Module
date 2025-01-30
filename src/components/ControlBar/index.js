@@ -265,7 +265,7 @@ const ControlBar = ({
           </div>
           <div>
             Developed of HISP Vietnam in collaboration with University of Oslo
-            and WHO
+            and WHO and Modified and Updated By Mirabilia Nigeria Ltd.
           </div>
           <br />
           <div>DHIS2 version tested:</div>

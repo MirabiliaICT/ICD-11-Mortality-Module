@@ -1,7 +1,7 @@
 {
   "programs": [
     {
-      "id": "ogrOUKoSaWA",
+      "id": "u95entEeZ0q",
       "name": "Cause of death (registration)",
       "shortName": "Cause of death (registration)",
       "publicAccess": "--------",
@@ -45,7 +45,7 @@
           "displayInList": true,
           "sortOrder": 1,
           "allowFutureDate": false,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "BfkIayM14MF" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -55,7 +55,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": true,
           "sortOrder": 2,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "j1yPic5cJUo" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -65,7 +65,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": true,
           "sortOrder": 3,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "A9yzNTl9G0f" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -75,7 +75,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": true,
           "sortOrder": 4,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "lDKfAjYyQcN" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -85,7 +85,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": true,
           "sortOrder": 5,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "revZcilpJvK" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -95,7 +95,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": false,
           "sortOrder": 6,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "z4jIMvqs0ff" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -105,7 +105,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": false,
           "sortOrder": 7,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "UpxiqwM8BTC" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -115,7 +115,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": true,
           "sortOrder": 8,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "F6qFXT44qay" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -125,7 +125,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": false,
           "sortOrder": 9,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "X5p19VIeYyW" },
           "programTrackedEntityAttributeGroups": []
         },
@@ -135,7 +135,7 @@
           "renderOptionsAsRadio": false,
           "displayInList": false,
           "sortOrder": 10,
-          "program": { "id": "ogrOUKoSaWA" },
+          "program": { "id": "u95entEeZ0q" },
           "trackedEntityAttribute": { "id": "rZSVLUfgHlD" },
           "programTrackedEntityAttributeGroups": []
         }

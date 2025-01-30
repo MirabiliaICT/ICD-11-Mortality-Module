@@ -331,7 +331,7 @@ const Finish = ({
                 metadataApi.push("/api/dataStore/WHO_ICD11_COD/icdOptionSet", {id: metadata["optionSets"].find( ({code}) => code === "icd11").id}, "PUT"),
                 metadataApi.push("/api/dataStore/WHO_ICD11_COD/formMapping", formMapping, "PUT"),
                 metadataApi.get("/api/options.json", { paging: false }, [
-                    "fields=id,name,code,attributeValues[value,attribute[id]]",
+                    "fields=id,name,code,attributeValues%5Bvalue%2Cattribute%5Bid%5D%5D",
                     `filter=optionSet.id:eq:${metadata["optionSets"].find( ({code}) => code === "icd11").id}`
                 ]),
                 metadataApi.push(

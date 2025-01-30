@@ -103,13 +103,27 @@ const AssignOrgUnits = ({ admin, metadata, assignOrgUnits }) => {
               onChange={(value, option) => {
                 setSelectedOrgUnitGroup({ ...option });
               }}
-              options={orgUnitGroups.map((oug) => {
-                return {
-                  value: oug.id,
-                  orgUnitList: oug.organisationUnits.map((ou) => ou.id),
-                  label: oug.displayName
-                };
-              })}
+            //   options={orgUnitGroups.map((oug) => {
+            //     return {
+            //       value: oug.id,
+            //       orgUnitList: oug.organisationUnits.map((ou) => ou.id),
+            //       label: oug.displayName
+            //     };
+            //   }
+            // )}
+            options={
+             
+
+              Array.isArray(orgUnitGroups) // Check if orgUnitGroups is an array
+                ? orgUnitGroups.map((oug) => {
+                    return {
+                      value: oug.id,
+                      orgUnitList: Array.isArray(oug.organisationUnits)? oug.organisationUnits.map((ou) => ou.id):[],//check if organisationUnits is an array
+                      label: oug.displayName,
+                    };
+                  })
+                : [] // Return an empty array if orgUnitGroups is not ready
+            }
             />
           </div>
           <div>

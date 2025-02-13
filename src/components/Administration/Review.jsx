@@ -111,15 +111,58 @@ const Review = ({
       let data = {};
 
       // generate metadata (base on setting stored in redux)
-      if (installType === "custom") {
-        const ageAttribute = await metadataApi.get(`/api/trackedEntityAttributes.json`, { paging: false }, [`filter=id:eq:${trackedEntityAttributes.find(([,name]) => name === "Age in years")[0]}`,"fields=:owner,!created,!lastUpdated,!createdBy,!lastUpdatedBy"]);
-        data = generateCustomMetadata({trackedEntityAttributes,dataElements,trackedEntityType,fullnameOption}, generateNewUID,ageAttribute.trackedEntityAttributes[0]);
-        data.metadata.programIndicators = updateProgramIndicators(data.metadata.programIndicators,trackedEntityAttributes.find(([,name]) => name === "Date of Birth")[0],trackedEntityAttributes.find(([,name]) => name === "Sex")[0],femaleOption);
-        data.metadata.sqlViews = updateSQLViews(data.metadata.sqlViews,trackedEntityAttributes.find(([,name]) => name === "Age in years")[0],trackedEntityAttributes.find(([,name]) => name === "Sex")[0],femaleOption);
-      }
-      else {
-        data = generateDefaultMetadata(false,generateNewUID);
-      }
+//       if (installType === "custom") {
+//         const ageAttribute = await metadataApi.get(`/api/trackedEntityAttributes.json`, { paging: false }, [`filter=id:eq:${trackedEntityAttributes.find(([,name]) => name === "Age in years")[0]}`,"fields=:owner,!created,!lastUpdated,!createdBy,!lastUpdatedBy"]);
+//         data = generateCustomMetadata({trackedEntityAttributes,dataElements,trackedEntityType,fullnameOption}, generateNewUID,ageAttribute.trackedEntityAttributes[0]);
+//         data.metadata.programIndicators = updateProgramIndicators(data.metadata.programIndicators,trackedEntityAttributes.find(([,name]) => name === "Date of Birth")[0],trackedEntityAttributes.find(([,name]) => name === "Sex")[0],femaleOption);
+//         data.metadata.sqlViews = updateSQLViews(data.metadata.sqlViews,trackedEntityAttributes.find(([,name]) => name === "Age in years")[0],trackedEntityAttributes.find(([,name]) => name === "Sex")[0],femaleOption);
+//       }
+//       else {
+//         data = generateDefaultMetadata(false,generateNewUID);
+//       }
+
+if (installType === "custom") {
+  try {
+    // 1. Find attribute ID safely
+    const ageAttributeEntry = trackedEntityAttributes.find(
+      ([, name]) => name === "Age in years"
+    );
+
+    if (!ageAttributeEntry) {
+      throw new Error('Local definition missing "Age in years" attribute');
+    }
+
+    // 2. Make API call
+    const ageAttribute = await metadataApi.get(
+      `/api/trackedEntityAttributes.json`,
+      { paging: false },
+      [
+        `filter=id:eq:${ageAttributeEntry[0]}`,
+        "fields=:owner,!created,!lastUpdated,!createdBy,!lastUpdatedBy"
+      ]
+    );
+
+    // 3. Validate API response
+    if (!ageAttribute?.trackedEntityAttributes?.length) {
+      throw new Error('API returned no results for age attribute');
+    }
+
+    // Proceed with data generation
+    data = generateCustomMetadata(
+      { trackedEntityAttributes, dataElements, trackedEntityType, fullnameOption },
+      generateNewUID,
+      ageAttribute.trackedEntityAttributes[0]
+    );
+
+    // ... rest of your code
+  } catch (error) {
+    console.error("Metadata initialization failed:", error);
+    // Handle error state in your UI
+//     return <ErrorState message={error.message} />;
+  }
+} else {
+  data = generateDefaultMetadata(false, generateNewUID);
+}
 
       data.metadata = {
         ...data.metadata,

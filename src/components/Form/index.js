@@ -38,7 +38,7 @@ import { useTranslation } from "react-i18next";
 const { useApi } = Hooks;
 const ButtonGroup = Button.Group;
 
-const Form = ({ 
+const Form = ({
   changeRoute,
   mutateTei,
   mutateAttribute,
@@ -51,8 +51,8 @@ const Form = ({
   const { dataApi } = useApi();
 
   const [ sideBar, setSideBar ] = useState(true);
-  const [ profileSection, setProfileSection ] = useState(true); 
-  const [ resultSection, setResultSection ] = useState(true); 
+  const [ profileSection, setProfileSection ] = useState(true);
+  const [ resultSection, setResultSection ] = useState(true);
 
   const [loading,setLoading]=useState(false);
   const [exitWarning,setExitWarning]=useState(false);
@@ -82,7 +82,7 @@ const Form = ({
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <WarningDialog 
+      <WarningDialog
         open={exitWarning}
         handleCancel={() => {
           setExitWarning(false);
@@ -94,7 +94,7 @@ const Form = ({
           changeRoute("list");
         }}
       ></WarningDialog>
-      <DeleteDialog 
+      <DeleteDialog
         open={deleteWarning}
         handleCancel={() => {
           setDeleteWarning(false);
@@ -122,7 +122,7 @@ const Form = ({
           <div className="section-title-profile-container">
             <div className="section-title-profile">
               <FontAwesomeIcon icon={faUserEdit} style={{ fontSize: 15 }} />
-              &nbsp; 
+              &nbsp;
               {t("profile")}
             </div>
             <ButtonGroup
@@ -130,12 +130,12 @@ const Form = ({
                 float: "right",
               }}
             >
-              <Button 
-                type="text" 
-                style={{ 
-                  color: "#ffffff", 
+              <Button
+                type="text"
+                style={{
+                  color: "#ffffff",
                   width: "300px",
-                  fontSize: "15px", 
+                  fontSize: "15px",
                   fontWeight: "bold",
                   lineHeight: "5px",
                   textAlign: "right",
@@ -158,7 +158,7 @@ const Form = ({
                 }}
               >
                 <Button
-                  type="primary" 
+                  type="primary"
                   danger
                   style={{
                     width: "110px"
@@ -171,16 +171,31 @@ const Form = ({
                   Delete
                 </Button>
                 <Button
-                  type="primary" 
+                  type="primary"
                   style={{
                     width: "110px",
                     marginLeft: "3px"
                   }}
 
                   onClick={async () => {
-                    if ( 
-                      programMetadata.trackedEntityAttributes.filter( ({compulsory}) => compulsory )
-                      .every( ({id}) => currentTei.attributes[id] && currentTei.attributes[id] !== "" )
+                    console.log(programMetadata, " haibo");
+                    console.log(currentTei, " yebo");
+                    console.log(currentEnrollment, " habobo");
+                    // console.log(currentEnrollment, " ");
+                    console.log("xxx " + currentEnrollment['enrollmentDate']);
+                    console.log("vvv " + currentEnrollment.enrollmentDate);
+                    console.log("sss " + currentEnrollment['incidentDate']);
+                    console.log("aaa " + currentEnrollment['incidentDate']);
+
+                    console.log("bbbbb " + programMetadata.trackedEntityAttributes.filter( ({compulsory}) => compulsory )
+                        .every( ({id}) => currentTei.attributes[id] && currentTei.attributes[id] !== "" ))
+                    // console.log("www "+currentTei.attributes[id]);
+                    // console.log("zzz "+currentTei.attributes[id]);
+
+                    // programMetadata.trackedEntityAttributes.filter( ({compulsory}) => compulsory )
+                    //     .every( ({id}) => currentTei.attributes[id] && currentTei.attributes[id] !== "" )
+
+                    if (true
                       && currentEnrollment['enrollmentDate'] && currentEnrollment.enrollmentDate !== ""
                       && currentEnrollment['incidentDate'] && currentEnrollment['incidentDate'] !== ""
                     ) {
@@ -233,12 +248,12 @@ const Form = ({
                 float: "right",
               }}
             >
-              <Button 
-                type="text" 
-                style={{ 
-                  color: "#ffffff", 
+              <Button
+                type="text"
+                style={{
+                  color: "#ffffff",
                   width: "300px",
-                  fontSize: "15px", 
+                  fontSize: "15px",
                   fontWeight: "bold",
                   lineHeight: "5px",
                   textAlign: "right",
@@ -261,7 +276,7 @@ const Form = ({
                 }}
               >
                 <Button
-                  type="primary" 
+                  type="primary"
                   style={{
                     width: "110px",
                   }}
@@ -292,13 +307,13 @@ const Form = ({
                 {sideBar ? "Collapse" : "Expand"}
               </Button>
               <Button
-                type="primary" 
+                type="primary"
                 style={{
                   width: "110px",
                   marginLeft: "3px",
                 }}
                 disabled={!certificate}
-                onClick={() => { 
+                onClick={() => {
                   setOpenCertificate(true);
                   setLoading(true);
                 }}
@@ -356,7 +371,7 @@ const Form = ({
                       // Dirty Check
                       mutateTei("isDirty", false);
                       mutateEnrollment("isDirty", false);
-                      
+
                       setLoading(false);
                     }}
                   >
@@ -376,9 +391,9 @@ const Form = ({
                         currentEvents[0].dataValues &&
                         currentEvents[0].dataValues[formMapping.dataElements["underlyingCOD_processed_by"]] &&
                         currentEvents[0].dataValues[formMapping.dataElements["underlyingCOD_processed_by"]] === "Manual" &&
-                        (( 
-                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] && 
-                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] === "" 
+                        ((
+                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] &&
+                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] === ""
                         ) || !currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]])
                       ) {
                         message.error("ERROR!!! Please select reason of not using the result from DORIS tool");
@@ -408,7 +423,7 @@ const Form = ({
                         mutateTei("isDirty", false);
                         mutateEnrollment("isDirty", false);
                         mutateEvent(currentEvents[0].event,"isDirty",false);
-                        
+
                         setLoading(false);
                       }
                     }}
@@ -417,7 +432,7 @@ const Form = ({
                   </Button>
                 }
                 <Button
-                  type="primary" 
+                  type="primary"
                   style={{
                     width: "110px",
                     marginLeft: "3px"
@@ -428,9 +443,9 @@ const Form = ({
                         currentEvents[0].dataValues &&
                         currentEvents[0].dataValues[formMapping.dataElements["underlyingCOD_processed_by"]] &&
                         currentEvents[0].dataValues[formMapping.dataElements["underlyingCOD_processed_by"]] === "Manual" &&
-                        (( 
-                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] && 
-                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] === "" 
+                        ((
+                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] &&
+                          currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]] === ""
                         ) || !currentEvents[0].dataValues[formMapping.dataElements["reason_of_manual_COD_selection"]])
                     ) {
                       message.error("ERROR!!! Please select reason of not using the result from DORIS tool");
@@ -439,10 +454,10 @@ const Form = ({
                       setLoading(true);
                       const { currentEvents } = generateDhis2Payload(data, programMetadata);
                       await dataApi.pushEvents({ events: currentEvents });
-      
+
                       // Dirty Check
                       mutateEvent(currentEvents[0].event,"isDirty",false);
-      
+
                       // Notification
                       setLoading(false);
                       message.success("Saved Successfully!");

@@ -178,14 +178,6 @@ const Form = ({
                   }}
 
                   onClick={async () => {
-                    console.log(programMetadata, " haibo");
-                    console.log(currentTei, " yebo");
-                    console.log(currentEnrollment, " habobo");
-                    // console.log(currentEnrollment, " ");
-                    console.log("xxx " + currentEnrollment['enrollmentDate']);
-                    console.log("vvv " + currentEnrollment.enrollmentDate);
-                    console.log("sss " + currentEnrollment['incidentDate']);
-                    console.log("aaa " + currentEnrollment['incidentDate']);
 
                     console.log("bbbbb " + programMetadata.trackedEntityAttributes.filter( ({compulsory}) => compulsory )
                         .every( ({id}) => currentTei.attributes[id] && currentTei.attributes[id] !== "" ))

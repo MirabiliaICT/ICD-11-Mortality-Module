@@ -84,7 +84,12 @@ export const convertValueBack = (valueType, value) => {
 
 export const generateDhis2Payload = (data, programMetadata) => {
   const newData = JSON.parse(JSON.stringify(data));
+  console.log("newDatanewDatanewDatanewData", newData);
   let { currentTei, currentEnrollment, currentEvents } = newData;
+
+  console.log("currentTeicurrentTeicurrentTei", currentTei);
+  console.log("currentEnrollmentcurrentEnrollmentcurrentEnrollment", currentEnrollment);
+  console.log("currentEventscurrentEventscurrentEvents", currentEvents);
   currentTei.attributes = Object.keys(currentTei.attributes)
     .filter(attribute => programMetadata.trackedEntityAttributes.find((attr) => attr.id === attribute) )
     .map((attribute) => {
@@ -96,6 +101,11 @@ export const generateDhis2Payload = (data, programMetadata) => {
   });
   currentEnrollment.enrollmentDate = moment(currentEnrollment.enrollmentDate).format("YYYY-MM-DD");
   currentEnrollment.incidentDate = moment(currentEnrollment.incidentDate).format("YYYY-MM-DD");
+
+  console.log("currentEnrollment.enrollmentDate = moment(currentEnrollment.enrollmentDate).format(\"YYYY-MM-DD\")",
+      currentEnrollment.enrollmentDate = moment(currentEnrollment.enrollmentDate).format("YYYY-MM-DD"));
+  console.log("currentEnrollment.incidentDate = moment(currentEnrollment.incidentDate).format(\"YYYY-MM-DD\")",
+      currentEnrollment.incidentDate = moment(currentEnrollment.incidentDate).format("YYYY-MM-DD"));
 
   currentEvents = currentEvents.map((event) => {
     const programStage = programMetadata.programStages.find((ps) => ps.id === event.programStage);
@@ -110,7 +120,9 @@ export const generateDhis2Payload = (data, programMetadata) => {
     event.dueDate = moment(event.dueDate).format("YYYY-MM-DD");
     return event;
   });
-
+  console.log("currentTeicurrentTeicurrentTeixxxxxxxxxxxxxxxxxxxxddd", currentTei);
+  console.log("cccurrentEnrollmentcurrentEnrollmentcurrentEnrollment", currentEnrollment);
+  console.log("currentEventscurrentEventscurrentEventsnnnnnnnnnnnnnn", currentEvents);
   return { currentTei, currentEnrollment, currentEvents };
 };
 

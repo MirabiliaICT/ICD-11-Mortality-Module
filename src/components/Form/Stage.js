@@ -207,13 +207,31 @@ const Stage = ({
     //   }
     // }
 
-    const currentUnderlyingCoD = currentEvent && currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] ? currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] : "";
+    const currentUnderlyingCoD = currentEvent.event && currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] ? currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] : "";
     // Save values of underlying
     if (currentEvent) {
       if (result && result !== "") {
         if ( result !== currentUnderlyingCoD ) {
           mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD"], result);
           mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_code"], result);
+
+          const foundOption = icd11Options.find(option => option.code === result);
+          if (!foundOption) {
+            console.error(`No matching option found for code: ${result}`);
+            console.log(icd11Options, " icd11Options");
+            return; // Exit early because the option is not found.
+          }
+          const chapterAttribute = foundOption.attributeValues?.find(attrVal => attrVal.attribute.id === formMapping.optionAttributes["chapter"]);
+          const groupAttribute = foundOption.attributeValues?.find(attrVal => attrVal.attribute.id === formMapping.optionAttributes["group"]);
+          if (!chapterAttribute || !groupAttribute){
+            console.error(`Missing attribute in the matching options`);
+            return;
+          }
+
+          mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_code"], result);
+          mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_chapter"], chapterAttribute.value);
+          mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_group"], groupAttribute.value);
+
           mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_chapter"], icd11Options.find( option => option.code === result).attributeValues.find( attrVal => attrVal.attribute.id === formMapping.optionAttributes["chapter"] ).value);
           mutateDataValue(currentEvent.event, formMapping.dataElements["underlyingCOD_group"], icd11Options.find( option => option.code === result).attributeValues.find( attrVal => attrVal.attribute.id === formMapping.optionAttributes["group"] ).value);
         }
@@ -626,7 +644,7 @@ const Stage = ({
     headers.append("API-Version", "v2");
     headers.append("Accept-Language", keyUiLocale);
     headers.append("Authorization", `Bearer ${icdApi_clientToken}`);
-    const icdApiUrl = "https://id.who.int/icd/release/11/2023-01/doris?" 
+    const icdApiUrl = "https://id.who.int/icd/release/11/2024-01/doris?"
       + "sex=" + (!currentTeiSexAttributeValue ? "9" : currentTeiSexAttributeValue === "" ? "9" : currentTeiSexAttributeValue === femaleCode ? "2" : "1")
       + (currentTeiAgeAttributeValue ? `&estimatedAge=P${currentTeiAgeAttributeValue}YD` : "")
       + (currentTeiDateOfBirthAttributeValue ? `&dateBirth=${currentTeiDateOfBirthAttributeValue}` : "")
@@ -640,6 +658,8 @@ const Stage = ({
       headers: headers
     })
     .then((result) => {
+      console.log("result here ");
+      console.log("<br />");
       return result.json();
     })
     .catch((err) => {

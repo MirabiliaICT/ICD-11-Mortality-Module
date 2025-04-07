@@ -16,28 +16,35 @@ const BubbleMapWidget = ({ data }) => {
             am5themes_Animated.new(root)
         ]);
 
-        const chartData = { 
+        const chartData = {
             ...data,
-            children: [{
-                ...data.data.children[0],
-                // x: am5.percent(80),
-                // y: am5.percent(20),
-            },
-            {
-                ...data.data.children[1],
-                // x: am5.percent(50),
-                // y: am5.percent(50),
-            },
-            {
-                ...data.data.children[2],
-                // x: am5.percent(20),
-                // y: am5.percent(40),
-            },
-            {
-                ...data.data.children[3],
-                // x: am5.percent(30),
-                // y: am5.percent(60),
-            }]
+            children: data && data.data && data.data.children ? [
+                { ...(data.data.children[0] || {}) },
+                { ...(data.data.children[1] || {}) },
+                { ...(data.data.children[2] || {}) },
+                { ...(data.data.children[3] || {}) }
+            ] : []
+            // ...data,
+            // children: [{
+            //     ...data.data.children[0],
+            //     // x: am5.percent(80),
+            //     // y: am5.percent(20),
+            // },
+            // {
+            //     ...data.data.children[1],
+            //     // x: am5.percent(50),
+            //     // y: am5.percent(50),
+            // },
+            // {
+            //     ...data.data.children[2],
+            //     // x: am5.percent(20),
+            //     // y: am5.percent(40),
+            // },
+            // {
+            //     ...data.data.children[3],
+            //     // x: am5.percent(30),
+            //     // y: am5.percent(60),
+            // }]
         }
 
         // Create wrapper container

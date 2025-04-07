@@ -7,11 +7,11 @@
     }
   },
   "appType": "APP",
-  "name": "ICD-11 Cause of Death",
-  "version": "2.0.0",
-  "description": "Cause of Death",
+  "name": "CARPHA Mortality Surveillance System",
+  "version": "2.0.1",
+  "description": "CARPHA Mortality Surveillance System, a central repository for all CARPHA member state country Mortality record",
   "developer": {
-    "name": "HISPVN Team"
+    "name": "Adapted from HISPVN Team customised by Mirabilia Nigeria Ltd"
   },
   "icons": {
     "16": "icon.png",

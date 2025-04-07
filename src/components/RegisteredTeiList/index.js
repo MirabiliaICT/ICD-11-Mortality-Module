@@ -60,7 +60,7 @@ const RegisteredTeiList = ({ metadata, data, initData, changeRoute }) => {
         "",
         sortTable
       );
-      console.log(instanceList);
+      console.log("instanceListinstanceListinstanceList", instanceList);
       setupUI(instanceList);
     })();
   }, [
@@ -138,6 +138,7 @@ const RegisteredTeiList = ({ metadata, data, initData, changeRoute }) => {
     let columns = programMetadata.trackedEntityAttributes
       .filter((tea) => tea.displayInList)
       .map((tea) => {
+        console.log("teateateateatea ", tea);
         const teaObject = {
           title: tea.displayFormName,
           dataIndex: tea.id,
@@ -146,6 +147,7 @@ const RegisteredTeiList = ({ metadata, data, initData, changeRoute }) => {
           filterDropdown: generateTableFilter(tea, onFilter),
           render: generateTableColumns(tea),
         };
+        console.log("teaObjectteaObjectteaObject ", teaObject);
         return teaObject;
       });
     const lastUpdatedObject = {

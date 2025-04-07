@@ -388,51 +388,71 @@ const Attributes = ({
             );
           })}
           {
-            (selectedTrackedEntityAttributes.filter( ([,source]) => source === "Sex" ).length > 0) && <div className="administration-femaleOption">
-              <div className="administration-femaleOption-name">{t("femaleOption")}</div>
-              <div>
-                {
-                  <Select
-                    style={{
-                      width: "100%"
-                    }}
-                    placeholder={t("selectOption")}
-                    value={selectedFemaleOption}
-                    onChange={(value) => setFemaleOption(value)}
-                    disabled={programMetadata}
-                  >
-                    {
-                      (femaleOptions.length > 0) && femaleOptions.map( opt => <Option key={opt.id} value={opt.code}>{opt.name}</Option> )
-                    }
-                  </Select>
-                }
+            (selectedTrackedEntityAttributes.filter( ([,source]) => source === "Sex" ).length > 0) &&
+              <div className="administration-femaleOption">
+                <div className="administration-femaleOption-name">{t("femaleOption")}</div>
+                <div>
+                  {
+                    <Select
+                        style={{
+                          width: "100%"
+                        }}
+                        placeholder={t("selectOption")}
+                        value={selectedFemaleOption}
+                        // onChange={(value) => setFemaleOption(value)}
+                        // disabled={programMetadata}
+                    >
+                      {
+                          Array.isArray(femaleOptions) && femaleOptions.length > 0 &&
+                          femaleOptions.map(opt => <Option key={opt.id} value={opt.code}>{opt.name}</Option>)
+                      }
+                    </Select>
+                  }
+                </div>
+                {/*<div className="administration-femaleOption-name">{t("femaleOption")}</div>*/}
+                {/*<div>*/}
+                {/*  {*/}
+                {/*    <Select*/}
+                {/*      style={{*/}
+                {/*        width: "100%"*/}
+                {/*      }}*/}
+                {/*      placeholder={t("selectOption")}*/}
+                {/*      value={selectedFemaleOption}*/}
+                {/*      // onChange={(value) => setFemaleOption(value)}*/}
+                {/*      // disabled={programMetadata}*/}
+                {/*    >*/}
+                {/*      {*/}
+                {/*        (femaleOptions.length > 0) && femaleOptions.map( opt => <Option key={opt.id} value={opt.code}>{opt.name}</Option> )*/}
+                {/*      }*/}
+                {/*    </Select>*/}
+                {/*  }*/}
+                {/*</div>*/}
               </div>
-            </div>
           }
           {
-            (type === 'default' && programMetadata === null) && <div className="administration-femaleOption">
-              <div className="administration-femaleOption-name">{t("femaleOption")}</div>
-              <div>
-              {
-                getDefaultTEAName("Female Option")
-              }
+              (type === 'default' && programMetadata === null) && <div className="administration-femaleOption">
+                <div className="administration-femaleOption-name">{t("femaleOption")}</div>
+                <div>
+                  {
+                    getDefaultTEAName("Female Option")
+                  }
+                </div>
               </div>
-            </div>
           }
         </Card>
       </div>
       <div>
         <Card size="small" title={t("otherAttributes")}>
           <Transfer
-            showSearch
-            pagination={{
-              pageSize: 20
-            }}
-            listStyle={{
-              width: "100%",
-              height: 500
-            }}
-            dataSource={showedTrackedEntityAttributes().map(({ id, displayName }) => ({
+              showSearch
+              pagination={{
+                pageSize: 20
+              }}
+              listStyle={{
+                width: "100%",
+                height: 500
+              }}
+              dataSource={showedTrackedEntityAttributes().map(({id, displayName}) => ({
               title: displayName,
               key: id
             }))}

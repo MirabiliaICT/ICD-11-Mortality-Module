@@ -1,6 +1,6 @@
 {
-  "short_name": "CoD",
-  "name": "ICD-11 Cause Of Death",
+  "short_name": "CMS",
+  "name": "CARPHA Mortality Surveillance System",
   "icons": [
     {
       "src": "favicon.ico",

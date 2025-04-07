@@ -20,7 +20,7 @@ const WidgetContainer = React.forwardRef(({ style, className, selectedOrgUnit, f
   const [selectedChild, setSelectedChild] = useState(0);
   console.log(selectedChild, " selectedChild");
   const [data, setData] = useState(null);
-  console.log(data, " gerouttttttttt");
+  // console.log(data, " gerouttttttttt");
   const [loading, setLoading] = useState(true);
   console.log(loading, " loading");
   const { children } = props.widget;
@@ -42,7 +42,7 @@ const WidgetContainer = React.forwardRef(({ style, className, selectedOrgUnit, f
           flag = false;
 
           if ( page[props.widget.i] === "no_data" ) {
-            console.log("url constructed ohhhhhhhh")
+            // console.log("url constructed ohhhhhhhh")
             setData({
               ...{
                 data: generateChildCharts(
@@ -134,7 +134,7 @@ const WidgetContainer = React.forwardRef(({ style, className, selectedOrgUnit, f
       case "treemap":
         return <Treemap data={data} />;
       case "bubble":
-        console.log(data, " gatagatagata")
+        // console.log(data, " gatagatagata")
         return <Bublemap data={data}/>
       default:
         return <Nodata data={data}/>;

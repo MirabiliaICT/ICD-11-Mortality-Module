@@ -84,7 +84,7 @@ const Attributes = ({
       ]
       changeTrackedEntityTypes(selectedAttrs); // This is for TEAs
       changeTrackedEntityType(programMetadata.trackedEntityType);
-      // setFemaleOption(femaleCode);
+      setFemaleOption(femaleCode);
       setFullnameOption(fullnameOption);
     }
   },[programMetadata])

@@ -207,7 +207,7 @@ const Stage = ({
     //   }
     // }
 
-    const currentUnderlyingCoD = currentEvent.event && currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] ? currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] : "";
+    const currentUnderlyingCoD = currentEvent && currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] ? currentEvent.dataValues[formMapping.dataElements["underlyingCOD_code"]] : "";
     // Save values of underlying
     if (currentEvent) {
       if (result && result !== "") {
